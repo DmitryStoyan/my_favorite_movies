@@ -4,7 +4,7 @@
   </form>
   <loader v-if="searchStore.loader" />
   <div v-else>
-    <Movie v-for="movie of searchStore.movies" :key="movie.id" :movie="movie" />
+    <Movie v-for="movie of searchStore.movies" :key="movie.id" :movie="movie" :is-search="true" />
   </div>
 </template>
 

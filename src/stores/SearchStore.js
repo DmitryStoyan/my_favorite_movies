@@ -20,11 +20,14 @@ export const useSearchStore = defineStore("searchStore", {
 
         const data = await res.json();
         this.movies = data.items;
-        console.log(data.items);
-        // let result = data.items.map((item) => {
-        //   return item.nameRu;
-        // });
-        // console.log(result);
+        // console.log(data.items);
+        this.movies = data.items.map((movie) => ({
+          id: movie.kinopoiskId,
+          original_title: movie.nameRu || movie.nameOriginal || "Untitled",
+          overview: movie.description || "No description available",
+          poster_path: movie.posterUrl || "/placeholder.jpg",
+          release_date: movie.year || "Unknown",
+        }));
 
         this.loader = false;
       } catch (error) {
