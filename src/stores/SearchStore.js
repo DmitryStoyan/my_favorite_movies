@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { useMovieStore } from "./MovieStore";
 const baseUrl = "https://kinopoiskapiunofficial.tech/api/v2.2/films";
 const apiKey = "2f6eeb83-efd3-414b-be83-150d1f8d8134";
 
@@ -33,6 +34,11 @@ export const useSearchStore = defineStore("searchStore", {
       } catch (error) {
         console.error("Error fetching movies:", error.message);
       }
+    },
+    addToUserMovies(object) {
+      const movieStore = useMovieStore();
+      movieStore.movies.push({ ...object, isWatched: false });
+      movieStore.activeTab = 1;
     },
   },
 });
